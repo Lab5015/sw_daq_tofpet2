@@ -1027,7 +1027,11 @@ class Connection:
 	def openRawAcquisition(self, fileNamePrefix, calMode = False):
                 
                 asicsConfig = self.getAsicsConfig()
-                modeFile = open(fileNamePrefix + ".modf", "w")
+		if fileNamePrefix != "/dev/null":
+                	modeFile = open(fileNamePrefix + ".modf", "w")
+		else:
+			modeFile = open("/dev/null", "w")
+
                 modeFile.write("#portID\tslaveID\tchipID\tchannelID\tmode\n")
                 modeList = [] 
                 for portID, slaveID, chipID in asicsConfig.keys():
@@ -1344,7 +1348,7 @@ class Connection:
 		
 		return True
 	
-	def fe_tempp_read_max111xx(self, portID, slaveID, chipID, channelID):
+	def fe_temp_read_max111xx(self, portID, slaveID, chipID, channelID):
 		m_control = 0x00000826  # manual external; channel 0; reset FIFO; normal power; ID present; CS control
 		m_repeat = 0x00000000
 		
