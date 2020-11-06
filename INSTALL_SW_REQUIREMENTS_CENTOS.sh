@@ -20,8 +20,9 @@ python-devel \
 cmake \
 iniparser-devel \
 python2-bitarray.x86_64 \
+python3-root \
 xterm \
-python-pandas
+python-pandas \
+dkms
 
-
-
+sh INSTALL_DRIVERS.sh
